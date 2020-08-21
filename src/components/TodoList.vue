@@ -19,7 +19,8 @@
 <style>
     .todo-list {
         text-align: left;
-        width: 800px;
+        width: 700px;
         margin: 10px auto;
+        list-style: none;
     }
 </style>

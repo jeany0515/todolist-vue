@@ -1,5 +1,6 @@
 <template>
     <li>
+        <span>{{index + 1}}. </span>
         <input type="checkbox" :id="index" v-model="todoItem.isChecked">
         <label :for="index">{{ todoItem.text }}</label>
     </li>
