@@ -4,18 +4,16 @@
         <p>Simple Todo List with adding and filter by different status.</p>
         <input v-model.trim="todoContent">
         <button @click="addTodoItem">Add</button>
-        <ul class="todo-list">
-            <TodoItem v-for="(item, index) in todoList" :key="index" :todo-item="item" :index="index"></TodoItem>
-        </ul>
+        <TodoList :todo-list="todoList"></TodoList>
     </div>
 </template>
 
 <script>
-    import TodoItem from "./components/TodoItem";
+    import TodoList from "./components/TodoList";
 
     export default {
         name: 'App',
-        components: {TodoItem},
+        components: {TodoList},
         data() {
             return {
                 todoContent: '',
@@ -41,10 +39,5 @@
         text-align: center;
         color: #2c3e50;
         margin-top: 60px;
-    }
-
-    .todo-list {
-        text-align: left;
-        margin: 10px 30%;
     }
 </style>
