@@ -43,7 +43,6 @@
             addTodoItem() {
                 if (this.todoContent.length > 0) {
                     this.$store.dispatch('addTodo', this.todoContent)
-                    this.filter = 'all';
                     this.todoContent = '';
                 }
             },
