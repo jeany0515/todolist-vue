@@ -10,9 +10,27 @@
     export default {
         name: 'TodoList',
         components: {TodoItem},
-        props: {
-            todoList: Array
+        data() {
+            return {
+                filter: ''
+            }
         },
+        computed: {
+            todoList () {
+                const todoList = this.$store.state.todoList;
+                if (this.filter === 'active') { return todoList.filter(todo => !todo.done)}
+                if (this.filter === 'completed') { return todoList.filter(todo => todo.done)}
+                return todoList
+            }
+        },
+        watch: {
+            '$route' (to) {
+               this.filter = to.params.filter
+            }
+        },
+        mounted() {
+            this.filter = this.$route.params.filter
+        }
     }
 </script>
 

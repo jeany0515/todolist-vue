@@ -4,39 +4,21 @@
         <p>Simple Todo List with adding and filter by different status.</p>
         <input class="todo-input" v-model.trim="todoContent">
         <button @click="addTodoItem">Add</button>
-        <TodoList :todo-list="currentList"></TodoList>
+        <router-view></router-view>
         <div class="todo-filter">
-            <a @click="filter = 'all'" :class="{active: filter === 'all'}">All</a>
-            <a @click="filter = 'active'" :class="{active: filter === 'active'}">Active</a>
-            <a @click="filter = 'completed'" :class="{active: filter === 'completed'}">Completed</a>
+            <router-link :to="{ name: 'todos', params: { filter: 'all'}}">All</router-link>
+            <router-link :to="{ name: 'todos', params: { filter: 'active'}}">Active</router-link>
+            <router-link :to="{ name: 'todos', params: { filter: 'completed'}}">Completed</router-link>
         </div>
     </div>
 </template>
 
 <script>
-    import TodoList from "./components/TodoList";
-
-    const filters = {
-        all: todoList => todoList,
-        active: todoList => todoList.filter(todo => !todo.done),
-        completed: todoList => todoList.filter(todo => todo.done)
-    }
-
     export default {
         name: 'App',
-        components: {TodoList},
         data() {
             return {
-                todoContent: '',
-                filter: 'all'
-            }
-        },
-        computed: {
-            todoList () {
-                return this.$store.state.todoList
-            },
-            currentList () {
-                return filters[this.filter](this.todoList)
+                todoContent: ''
             }
         },
         methods: {
@@ -71,10 +53,5 @@
         display: inline-block;
         margin-right: 10px;
         cursor: pointer;
-    }
-
-    .todo-filter .active {
-        color: palevioletred;
-        font-weight: bold;
     }
 </style>
