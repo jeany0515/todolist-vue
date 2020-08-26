@@ -1,12 +1,13 @@
 export default {
-    addTodo ({ commit }, text) {
-        commit('addTodo', {
-            text,
-            done: false
-        })
+    initTodos ({ commit }, todos) {
+        commit('initTodos', todos)
     },
 
-    toggleTodo ({ commit }, index) {
-        commit('toggleTodo', index)
+    addTodo ({ commit }, todo) {
+        commit('addTodo', todo)
+    },
+
+    updateTodo ({ commit }, id, todo) {
+        commit('updateTodo', id, todo)
     }
 }

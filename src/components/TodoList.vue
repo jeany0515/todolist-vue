@@ -6,6 +6,8 @@
 
 <script>
     import TodoItem from "./TodoItem";
+    import { getTodoList } from "../api";
+    import { mapActions } from "vuex";
 
     export default {
         name: 'TodoList',
@@ -14,6 +16,12 @@
             return {
                 filter: ''
             }
+        },
+        mounted() {
+            this.filter = this.$route.params.filter
+            getTodoList().then((response) => {
+                this.initTodos(response)
+            })
         },
         computed: {
             todoList () {
@@ -28,9 +36,7 @@
                this.filter = to.params.filter
             }
         },
-        mounted() {
-            this.filter = this.$route.params.filter
-        }
+        methods: mapActions(['initTodos'])
     }
 </script>
 

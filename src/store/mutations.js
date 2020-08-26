@@ -1,15 +1,16 @@
 const mutations = {
+    initTodos (state, todos) {
+        state.todoList.push(...todos)
+    },
+
     addTodo (state, todo) {
         state.todoList.push(todo)
     },
 
-    toggleTodo (state, index) {
-        const todo = state.todoList[index]
+    updateTodo (state, id, todo) {
+        const index = state.todoList.findIndex(todo => todo.id === id)
 
-        state.todoList.splice(index, 1, {
-            ...todo,
-            done: !todo.done
-        })
+        state.todoList.splice(index, 1, todo)
     }
 }
 

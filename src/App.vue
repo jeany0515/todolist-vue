@@ -14,6 +14,8 @@
 </template>
 
 <script>
+    import { addTodo } from "./api";
+
     export default {
         name: 'App',
         data() {
@@ -24,8 +26,11 @@
         methods: {
             addTodoItem() {
                 if (this.todoContent.length > 0) {
-                    this.$store.dispatch('addTodo', this.todoContent)
-                    this.todoContent = '';
+                    const todo = {text: this.todoContent, done: false}
+                    addTodo(todo).then((response) => {
+                        this.$store.dispatch('addTodo', response)
+                        this.todoContent = '';
+                    })
                 }
             },
         }
